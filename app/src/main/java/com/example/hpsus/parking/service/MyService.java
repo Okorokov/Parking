@@ -34,26 +34,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MyService extends Service {
-    public  Intent intentt;
+
     public int NOTIFY_ID = 1;
-
-
-    public Timer myTimer = new Timer();
     public Date dateNow;
     public Context context;
     public PendingIntent contentIntent;
     public Notification.Builder builder;
     public NotificationManager nm;
-    public Boolean flag=false;
-    public Boolean flagOne=false;
     public Intent notificationIntent;
-    public int timeOn;
-    public Date when;
-    public int mhour;
-    public int mminute;
     public Notification n;
-    public String mCity;
-
     private FirebaseDatabase database;
     private DatabaseReference myRef,mNames;
     private  Car car;
@@ -92,12 +81,9 @@ public class MyService extends Service {
                 .setContentText("who has a birthday?...")
                 .setContentIntent(pendingIntent).build();
 
-        // startForeground(1037, notification);
         startForeground(1037, notification);
         Intent hideIntent = new Intent(this, HideNotification.class);
         startService(hideIntent);
-        //OpenDateBase();
-
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("parking");
@@ -118,12 +104,10 @@ public class MyService extends Service {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         String name=dataSnapshot.child("logs").child("name").getValue().toString();
-                        //Log.d("SERVICE", "name "+name+" ; nickName "+nickName);
-                        //Log.d("SERVICE", "name.equals(nickName) "+name.equals(nickName));
-                        String id=dataSnapshot.child("logs").child("carof").getValue().toString();
+                         String id=dataSnapshot.child("logs").child("carof").getValue().toString();
                         if(!name.equals(nickName)&!flKey){
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                SendMessage("Машину","припарковал(а) "+name, Integer.valueOf(id),1);
+                                SendMessage("Машину","припарковал(а) "+name, Integer.valueOf(id),NOTIFY_ID);
                             }
                         }
                     }
@@ -133,9 +117,6 @@ public class MyService extends Service {
 
                     }
                 });
-
-                //if{}
-               // Log.d("SERVICE", String.valueOf(Car.count(Car.class)));
             }
 
             @Override
@@ -181,8 +162,6 @@ public class MyService extends Service {
 
         builder.setContentIntent(contentIntent)
                 .setSmallIcon(android.R.drawable.stat_notify_chat)
-                //.setLargeIcon(BitmapFactory.decodeResource(res, R.mipmap.ic_launcher))
-                //.setLargeIcon(bitmap)
                 .setLargeIcon(BitmapFactory.decodeResource(res, nameImageOn[id]))
                 .setTicker(mess)
                 .setWhen(System.currentTimeMillis())

@@ -2,16 +2,12 @@ package com.example.hpsus.parking;
 
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,11 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hpsus.parking.service.MyService;
@@ -35,13 +29,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -119,12 +106,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         StartService();
 
-/*
-        for(int i=0 ;i< cars.size();i++) {
-            Log.d("XXXX", String.valueOf(i));
-            cars.get(i).save();
-        }
-*/
         imageView=(ImageView) findViewById(R.id.imageView);
         iBfl1=(ImageButton)findViewById(R.id.iBfl1);
         iBfl2=(ImageButton)findViewById(R.id.iBfl2);
@@ -150,10 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         myRef = FirebaseDatabase.getInstance().getReference("parking");
         mNames= FirebaseDatabase.getInstance().getReference();
-        //mNames.child("logs").push().child("name").setValue("petrowich");
-        //mNames.child("logs").child("time").setValue(new Date());
         //init();
-
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -170,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 reimage(iBfl9,car.getCaronoff9(),8);
                 reimage(iBfl10,car.getCaronoff10(),9);
                 Log.d("XXXX", String.valueOf(dataSnapshot.getValue()));
-                //Car carbase=new Car(car.getCaronoff1(),car.getCaronoff2(),car.getCaronoff3(),car.getCaronoff4(),car.getCaronoff5(),car.getCaronoff6(),car.getCaronoff7(),car.getCaronoff8(),car.getCaronoff9(),car.getCaronoff10() );
+
                 if(Car.count(Car.class)==1){
                     car=Car.findById(Car.class,1);
                     car.save();
@@ -196,7 +174,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View promptsView = li.inflate(R.layout.dialog_signin, null);
         //Создаем AlertDialog
         AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        //Настраиваем prompt.xml для нашего AlertDialog:
         mDialogBuilder.setView(promptsView);
         //Настраиваем отображение поля для ввода текста в открытом диалоге:
         userInput = (EditText) promptsView.findViewById(R.id.input_text);
@@ -281,19 +258,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

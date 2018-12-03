@@ -1,0 +1,64 @@
+{
+  "project_info": {
+    "project_number": "263005023933",
+    "firebase_url": "https://parking-f83e1.firebaseio.com",
+    "project_id": "parking-f83e1",
+    "storage_bucket": "parking-f83e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263005023933:android:00e7fce19ac7f7e5",
+        "android_client_info": {
+          "package_name": "com.example.hpsus.parking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263005023933-jeoe24rfbc0eobrui7bqffos41koecnt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hpsus.parking",
+            "certificate_hash": "3d4f25e7e94afa20ce7f6b00cefe3c4f726ea928"
+          }
+        },
+        {
+          "client_id": "263005023933-87sclf5t9rrocam2nq2u2mhhvdo44u8m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hpsus.parking",
+            "certificate_hash": "a7e36357d58761f77c1c994017ac1fc12bef0c99"
+          }
+        },
+        {
+          "client_id": "263005023933-3dq6sfp8l7ukualuup67lp5oghvbktbn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4j2AjWqMGFgmEIJUGGf_4Uetzd9XfZMs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263005023933-3dq6sfp8l7ukualuup67lp5oghvbktbn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-2826523946896450~6060432196"
+    }
+  ],
+  "configuration_version": "1"
+}
